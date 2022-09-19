@@ -78,7 +78,7 @@ class BatchMonitorStack(core.Stack):
                                "systemctl start httpd\n"
                                "systemctl enable httpd\n"
                                "cd /home/ec2-user\n"
-                               "git clone https://github.com/sharon-librae/Cloudwatch-Batch-Alarm.git\n"
+                               "git clone https://github.com/ensean/Cloudwatch-Batch-Alarm.git\n"
                                "cd Cloudwatch-Batch-Alarm/\n"
                                "mv cloudwatch.html /var/www/html\n"
                                "chmod +x start.sh\n"

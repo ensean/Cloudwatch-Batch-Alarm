@@ -9,7 +9,7 @@
         "path": "Tree",
         "constructInfo": {
           "fqn": "@aws-cdk/core.Construct",
-          "version": "1.105.0"
+          "version": "1.165.0"
         }
       },
       "BatchMonitor": {
@@ -40,7 +40,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnVPC",
-                  "version": "1.105.0"
+                  "version": "1.165.0"
                 }
               },
               "publicSubnet1": {
@@ -53,7 +53,6 @@
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
                       "aws:cdk:cloudformation:props": {
-                        "cidrBlock": "10.0.0.0/28",
                         "vpcId": {
                           "Ref": "BatchMonitorVPCF56464D9"
                         },
@@ -65,6 +64,7 @@
                             }
                           ]
                         },
+                        "cidrBlock": "10.0.0.0/28",
                         "mapPublicIpOnLaunch": true,
                         "tags": [
                           {
@@ -84,7 +84,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnSubnet",
-                      "version": "1.105.0"
+                      "version": "1.165.0"
                     }
                   },
                   "Acl": {
@@ -92,7 +92,7 @@
                     "path": "BatchMonitor/BatchMonitor VPC/publicSubnet1/Acl",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.Resource",
-                      "version": "1.105.0"
+                      "version": "1.165.0"
                     }
                   },
                   "RouteTable": {
@@ -114,7 +114,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnRouteTable",
-                      "version": "1.105.0"
+                      "version": "1.165.0"
                     }
                   },
                   "RouteTableAssociation": {
@@ -133,7 +133,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnSubnetRouteTableAssociation",
-                      "version": "1.105.0"
+                      "version": "1.165.0"
                     }
                   },
                   "DefaultRoute": {
@@ -153,13 +153,13 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnRoute",
-                      "version": "1.105.0"
+                      "version": "1.165.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.PublicSubnet",
-                  "version": "1.105.0"
+                  "version": "1.165.0"
                 }
               },
               "IGW": {
@@ -178,7 +178,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnInternetGateway",
-                  "version": "1.105.0"
+                  "version": "1.165.0"
                 }
               },
               "VPCGW": {
@@ -197,13 +197,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnVPCGatewayAttachment",
-                  "version": "1.105.0"
+                  "version": "1.165.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ec2.Vpc",
-              "version": "1.105.0"
+              "version": "1.165.0"
             }
           },
           "BatchMonitor": {
@@ -292,13 +292,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnRole",
-                  "version": "1.105.0"
+                  "version": "1.165.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Role",
-              "version": "1.105.0"
+              "version": "1.165.0"
             }
           },
           "instance type": {
@@ -306,7 +306,7 @@
             "path": "BatchMonitor/instance type",
             "constructInfo": {
               "fqn": "@aws-cdk/core.CfnParameter",
-              "version": "1.105.0"
+              "version": "1.165.0"
             }
           },
           "key name": {
@@ -314,7 +314,7 @@
             "path": "BatchMonitor/key name",
             "constructInfo": {
               "fqn": "@aws-cdk/core.CfnParameter",
-              "version": "1.105.0"
+              "version": "1.165.0"
             }
           },
           "visit ip": {
@@ -322,7 +322,7 @@
             "path": "BatchMonitor/visit ip",
             "constructInfo": {
               "fqn": "@aws-cdk/core.CfnParameter",
-              "version": "1.105.0"
+              "version": "1.165.0"
             }
           },
           "SGForBatchMonitor": {
@@ -379,13 +379,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
-                  "version": "1.105.0"
+                  "version": "1.165.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
-              "version": "1.105.0"
+              "version": "1.165.0"
             }
           },
           "Instance": {
@@ -407,7 +407,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnInstanceProfile",
-                  "version": "1.105.0"
+                  "version": "1.165.0"
                 }
               },
               "Resource": {
@@ -454,19 +454,19 @@
                       }
                     ],
                     "userData": {
-                      "Fn::Base64": "#!/bin/bash\nyum install -y python3\ncurl -O https://bootstrap.pypa.io/get-pip.py\npython3 get-pip.py --user\npip3 install boto3\npip3 install flask\npip3 install flask_socketio\npip3 install eventlet\npip3 install gevent\npip3 install gevent-websocket\nyum install -y git\nyum install -y httpd\nsystemctl start httpd\nsystemctl enable httpd\ncd /home/ec2-user\ngit clone https://github.com/sharon-librae/Cloudwatch-Batch-Alarm.git\ncd Cloudwatch-Batch-Alarm/\nmv cloudwatch.html /var/www/html\nchmod +x start.sh\npython3 createAlarm.py\n"
+                      "Fn::Base64": "#!/bin/bash\nyum install -y python3\ncurl -O https://bootstrap.pypa.io/get-pip.py\npython3 get-pip.py --user\npip3 install boto3\npip3 install flask\npip3 install flask_socketio\npip3 install eventlet\npip3 install gevent\npip3 install gevent-websocket\nyum install -y git\nyum install -y httpd\nsystemctl start httpd\nsystemctl enable httpd\ncd /home/ec2-user\ngit clone https://github.com/ensean/Cloudwatch-Batch-Alarm.git\ncd Cloudwatch-Batch-Alarm/\nmv cloudwatch.html /var/www/html\nchmod +x start.sh\npython3 createAlarm.py\n"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnInstance",
-                  "version": "1.105.0"
+                  "version": "1.165.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ec2.Instance",
-              "version": "1.105.0"
+              "version": "1.165.0"
             }
           },
           "SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": {
@@ -474,7 +474,7 @@
             "path": "BatchMonitor/SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter",
             "constructInfo": {
               "fqn": "@aws-cdk/core.CfnParameter",
-              "version": "1.105.0"
+              "version": "1.165.0"
             }
           },
           "SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118": {
@@ -482,7 +482,7 @@
             "path": "BatchMonitor/SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118",
             "constructInfo": {
               "fqn": "@aws-cdk/core.Resource",
-              "version": "1.105.0"
+              "version": "1.165.0"
             }
           },
           "connection ip": {
@@ -490,7 +490,7 @@
             "path": "BatchMonitor/connection ip",
             "constructInfo": {
               "fqn": "@aws-cdk/core.CfnOutput",
-              "version": "1.105.0"
+              "version": "1.165.0"
             }
           },
           "CDKMetadata": {
@@ -502,7 +502,7 @@
                 "path": "BatchMonitor/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.105.0"
+                  "version": "1.165.0"
                 }
               },
               "Condition": {
@@ -510,25 +510,25 @@
                 "path": "BatchMonitor/CDKMetadata/Condition",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnCondition",
-                  "version": "1.105.0"
+                  "version": "1.165.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.105.0"
+              "version": "1.165.0"
             }
           }
         },
         "constructInfo": {
           "fqn": "@aws-cdk/core.Stack",
-          "version": "1.105.0"
+          "version": "1.165.0"
         }
       }
     },
     "constructInfo": {
       "fqn": "@aws-cdk/core.App",
-      "version": "1.105.0"
+      "version": "1.165.0"
     }
   }
 }
