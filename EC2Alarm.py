@@ -76,10 +76,10 @@ def Create_Alarm(metricname, instanceid, statistic, period, comparisonoperator, 
                           treatmissingdata, evaluationperiods, clientcw, alarmnameprefix, actionsenabled, description,
                           alarmactions, okactions,insufficientdataactions):
     # get instance name
-    client_ec2 = boto3.client('ec2', config=clientcw.config)
+    client_ec2 = boto3.client('ec2', config=clientcw.meta.config)
     instance_name = get_instance_name(client_ec2, instanceid)
     response_cw = clientcw.put_metric_alarm(
-        AlarmName=alarmnameprefix + instance_name + metricname,
+        AlarmName=alarmnameprefix + instance_name + '-' + metricname,
         ComparisonOperator=comparisonoperator,
         EvaluationPeriods=evaluationperiods,
         MetricName=metricname,
@@ -227,10 +227,10 @@ def get_instance_name(client_ec2, instance_id):
         InstanceIds=[
             instance_id,
         ],)
-    if len(resp['Reservations']['Instances']) == 0:
+    if len(resp['Reservations'][0]['Instances']) == 0:
         return None
     else:
-        inst = resp['Reservations']['Instances'][0]
+        inst = resp['Reservations'][0]['Instances'][0]
         for tag in inst['Tags']:
             if tag['Key'] == 'Name':
                 return tag['Value']
