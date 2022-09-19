@@ -75,8 +75,11 @@ def ec2_alarm(metriclist, statistic, period, comparisonoperator, threshold, data
 def Create_Alarm(metricname, instanceid, statistic, period, comparisonoperator, threshold, datapointstoalarm,
                           treatmissingdata, evaluationperiods, clientcw, alarmnameprefix, actionsenabled, description,
                           alarmactions, okactions,insufficientdataactions):
+    # get instance name
+    client_ec2 = boto3.client('ec2', config=clientcw.config)
+    instance_name = get_instance_name(client_ec2, instanceid)
     response_cw = clientcw.put_metric_alarm(
-        AlarmName=alarmnameprefix + instanceid + metricname,
+        AlarmName=alarmnameprefix + instance_name + metricname,
         ComparisonOperator=comparisonoperator,
         EvaluationPeriods=evaluationperiods,
         MetricName=metricname,
@@ -217,3 +220,20 @@ def action_enable(notifications,ec2alarm):
     else:
         actionsenabled = False
     return actionsenabled
+
+# Get instance name from instance_id
+def get_instance_name(client_ec2, instance_id):
+    resp = client_ec2.describe_instances(
+        InstanceIds=[
+            instance_id,
+        ],)
+    if len(resp['Reservations']['Instances']) == 0:
+        return None
+    else:
+        inst = resp['Reservations']['Instances'][0]
+        for tag in inst['Tags']:
+            if tag['Key'] == 'Name':
+                return tag['Value']
+        # fallback to instance id in case instance name is not set
+        return instance_id
+
